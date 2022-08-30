@@ -33,7 +33,31 @@ describe("User account page", () => {
     });
   });
 
-  it.only(`TP02-Verifying successful registration of emergency patients`, () => {
+  it.only(`TEST 2-Verifying successful registration of emergency patients`, () => {
+    cy.contains("button", "Register New Patient").click();
+
+    cy.get("#newPatientCheck").click();
+
+    cy.get("#next").click();
+
+    cy.get("#emergencyCheck").click();
+
+    cy.contains("button", "Next Step").click();
+
+    cy.get("#name").type("Cypress test2").should("have.value", "Cypress test2");
+
+    cy.contains("button", "Complete").click();
+
+    cy.get("#queueRoom")
+      .select("Screening Portal")
+
+    cy.contains("button", "Assign Patient").click();
+
+    // cy.get("test2 Cypress").should("be.visible");
+
+  });
+
+  it.only(`TEST 3-Verifying successful registration of emergency patients`, () => {
     cy.contains("button", "Register New Patient").click();
 
     cy.get("#newPatientCheck").click();
