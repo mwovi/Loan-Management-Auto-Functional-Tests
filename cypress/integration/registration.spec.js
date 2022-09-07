@@ -33,7 +33,7 @@ describe("User account page", () => {
     });
   });
 
-  it.only(`TEST 2-Verifying successful registration of emergency patients`, () => {
+  it(`TEST 2-Verifying successful registration of emergency patients`, () => {
     cy.contains("button", "Register New Patient").click();
 
     cy.get("#newPatientCheck").click();
@@ -48,16 +48,14 @@ describe("User account page", () => {
 
     cy.contains("button", "Complete").click();
 
-    cy.get("#queueRoom")
-      .select("Screening Portal")
+    cy.get("#queueRoom").select("Screening Portal");
 
     cy.contains("button", "Assign Patient").click();
 
     // cy.get("test2 Cypress").should("be.visible");
-
   });
 
-  it.only(`TEST 3-Verifying successful registration of emergency patients`, () => {
+  it(`TEST 3-Verifying successful registration of emergency patients`, () => {
     cy.contains("button", "Register New Patient").click();
 
     cy.get("#newPatientCheck").click();
@@ -72,12 +70,13 @@ describe("User account page", () => {
 
     cy.contains("button", "Complete").click();
 
-    cy.get("#queueRoom")
-      .select("Screening Portal")
+    cy.get("#queueRoom").select("Screening Portal");
 
     cy.contains("button", "Assign Patient").click();
 
-    // cy.get("test2 Cypress").should("be.visible");
-
   });
+
+
+
+ 
 });
