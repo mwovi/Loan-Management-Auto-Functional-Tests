@@ -3,7 +3,7 @@
 
 describe("User account page", () => {
   beforeEach(() => {
-    cy.login("admin", "Admin123");
+    cy.login("admin", "Y3z44AH2");
 
     cy.eyesOpen({
       appName: "Location Page",
@@ -24,6 +24,8 @@ describe("User account page", () => {
     );
   });
 
+  
+
   it(`TP01-Verifying visibility of the page objects`, () => {
     //applitools eyes test
     cy.eyesCheckWindow({
@@ -34,11 +36,12 @@ describe("User account page", () => {
   });
 
   it(`TP02-Verifying Location text-box can be selected`, () => {
-    cy.get("select").select("Registration Desk").should("have.value", "5");
+    cy.get("#sessionLocationId").select("Registration Desk").should("have.value", "5");
   });
 
-  it.only(`TP03-Verify that the user is able to login by entering valid credentials and clicking on the ‘Check in’ button.`, () => {
-    cy.get("select").select("Registration Desk");
+  it(`TP03-Verify that the user is able to login by entering valid credentials and clicking on the ‘Check in’ button.`, () => {
+    cy.get("#loggedInLocationId").select("Sebele Clinic");
+    cy.get("#sessionLocationId").select("Registration Desk");
 
     cy.contains("button", "Check in").click();
 
