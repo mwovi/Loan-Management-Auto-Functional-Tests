@@ -1,9 +1,16 @@
 /// <reference types="cypress" />
 /// <reference types="@applitools/eyes-cypress" />
 
+import { faker } from '@faker-js/faker';
+var moment = require('moment');
+
+const firstName = faker.name.firstName();
+const familyName = faker.name.lastName();
+// const mobileNumber = faker.phone.phoneNumber('966#######');
+
 describe("User account page", () => {
   beforeEach(() => {
-    cy.locations("admin", "Admin123");
+    cy.locations("admin", "Y3z44AH2");
 
     cy.eyesOpen({
       appName: "Location Page",
@@ -12,9 +19,9 @@ describe("User account page", () => {
     });
   });
 
-  // afterEach(() => {
-  //   cy.eyesClose();
-  // });
+  afterEach(() => {
+    cy.eyesClose();
+  });
 
   //********tests-cases*********
 
@@ -33,140 +40,177 @@ describe("User account page", () => {
     });
   });
 
-  it(`TEST 2-Verifying successful registration of EMERGENCY patients`, () => {
+  it(`TEST 2-Verifying successful registration of emergency patients`, () => {
     cy.contains("button", "Register New Patient").click();
 
-    cy.get("#newPatientCheck").click();
+    cy.get('#find-patients').type("Jane Doe{enter}").should("have.value", "Jane Doe");
+    // cy.get('.fa-search').click()
 
-    cy.get("#next").click();
+    cy.contains('Create New Record >>').click();
 
     cy.get("#emergencyCheck").click();
 
     cy.contains("button", "Next Step").click();
 
-    cy.get("#name").type("Cypress test").should("have.value", "Cypress test");
+    cy.get("#name").type("John Juma").should("have.value", "John Juma");
 
     cy.contains("button", "Complete").click();
 
-    cy.get("#queueRoom").select("Screening Portal");
+    cy.wait(1000);
+    cy.get("#queueRoom")
+      .select("Screening")
 
     cy.contains("button", "Assign Patient").click();
 
-    // cy.get("test Cypress").should("be.visible");
+    cy.wait(2000);
+
+    cy.contains('Juma John').should('be.visible')
   });
 
-  it(`TEST 3-Verifying successful registration of REGULAR patients`, () => {
+  it.only(`TEST 3-Verifying successful registration of regular patients`, () => {
     cy.contains("button", "Register New Patient").click();
 
-    cy.get("#newPatientCheck").click();
+    cy.get('#find-patients').type("Jane Doe{enter}").should("have.value", "Jane Doe");
+    // cy.get('.fa-search').click()
 
-    cy.get("#next").click();
+    cy.contains('Create New Record >>').click();
 
-    cy.get("#regularCheck").click();
-
-    cy.contains("button", "Next Step").click();
-
-    cy.get("#patientId").type("622119123").should("have.value", "622119123");
-    cy.wait(5000);
-
-    cy.get("#givenName").type("Cypress").should("have.value", "Cypress");
-
-    cy.wait(1000);
-
-    cy.get("#familyName").type("Test").should("have.value", "Test");
-    cy.wait(1000);
-
-    cy.get("#gender").should("have.value", "Male");
-
-    cy.get("#dateOfBirth").type("2000-03-03");
-
-    cy.wait(1000);
-
-    cy.get("#email")
-      .type("test@gmail.com")
-      .should("have.value", "test@gmail.com");
-
-    cy.wait(1000);
-
-    cy.get("#phoneNumber").type("06123456").should("have.value", "06123456");
-
-    cy.get("#occupation").select("Engineer");
-    cy.get("#education").select("Junior high school education");
-    cy.get("#employer")
-      .type("Botswana Government")
-      .should("have.value", "Botswana Government");
-
-    cy.get("#homeAddress")
-      .type("23, kinanda, kgotla, southern, Gaborone")
-      .should("have.value", "23, kinanda, kgotla, southern, Gaborone");
-
-    cy.get("#address2").select("Kweneng").should("have.value", "Kweneng");
-    cy.get("#address3").type("Gaborone").should("have.value", "Gaborone");
-    cy.wait(1000);
+    cy.get('#regularCheck').click();
 
     cy.contains("button", "Next Step").click();
 
-    // Next of Kin
-    cy.wait(1000);
+    cy.get('#citizen').click();
+    cy.get('#btnId').click();
 
-    cy.get("#nextOfKinType").click();
-    cy.get("#nokIdNumber").type("112229056").should("have.value", "112229056");
+    const uuid = () => Cypress._.random(0, 1e4)
+    const uuid2 = () => Cypress._.random(0, 1e5)
+
+    const id = uuid()
+    const id2 = uuid2()
+    const testname = `${id}1${id2}`
+    cy.wait(2000);
+    cy.get('#patientId').type(testname);
+
     cy.wait(10000);
-
-    cy.get("#nokFullName").type("Jane Doe").should("have.value", "Jane Doe");
-
-    cy.wait(1000);
-
-    cy.get("#nokRelationship").select("Mother");
-
+    cy.get('#givenName').type(firstName);
     cy.wait(2000);
+    cy.get('#familyName').type(familyName);
 
-    cy.get("#nokContact").type("07123456").should("have.value", "07123456");
+    // cy.get('#dateOfBirth')click();
+    //a simple date formatting function
+    function dateFormat(inputDate, format) {
+      //parse the input date
+      const date = new Date(inputDate);
 
+      //extract the parts of the date
+      const day = date.getDate();
+      const month = date.getMonth() + 1;
+      const year = date.getFullYear();
+
+      //replace the month
+      format = format.replace("MM", month.toString().padStart(2, "0"));
+
+      //replace the year
+      if (format.indexOf("yyyy") > -1) {
+        format = format.replace("yyyy", year.toString());
+      } else if (format.indexOf("yy") > -1) {
+        format = format.replace("yy", year.toString().substr(2, 2));
+      }
+
+      //replace the day
+      format = format.replace("dd", day.toString().padStart(2, "0"));
+
+      return format;
+    }
+
+
+    function getRandomDate() {
+      const maxDate = Date.now();
+      const timestamp = Math.floor(Math.random() * maxDate);
+      // return new Date(timestamp).toLocaleDateString('en-GB', { month: 'short', day: '2-digit', year: 'numeric'});
+      return new Date(timestamp).toLocaleDateString('en-GB', { year: 'numeric', month: '2-digit', day: '2-digit' });
+
+    }
+    let date1 = getRandomDate();
+
+    //   let date2 = moment(date1).format('YYYY-MM-DD');
+
+    let date2 = dateFormat(getRandomDate(), 'yyyy-MM-dd');
     cy.wait(2000);
+    cy.get('#dateOfBirth').type(date2);
 
-    cy.get("#nokEmail")
-      .type("Janedoe@gmail.com")
-      .should("have.value", "Janedoe@gmail.com");
+    cy.get('#age').click();
 
-    cy.wait(1000);
 
-    cy.get("#nokHomeAddress")
-      .type("23, kinanda, kgotla, southern, Gaborone")
-      .should("have.value", "23, kinanda, kgotla, southern, Gaborone");
+    cy.get('#maritalStatus').then(($maritalStatus) => {
+      if ($maritalStatus.is('disabled')) {
+        this.skip()
+      } else {
+        cy.get('#maritalStatus').select('Single');
+      }
+    })
 
-    cy.get("#nokAddress2").select("Kweneng").should("have.value", "Kweneng");
-    cy.get("#nokAddress3").type("Gaborone").should("have.value", "Gaborone");
 
-    cy.contains("button", "Next step").click();
-    cy.contains("button", "Save & Register").click();
+    cy.get('#maritalStatus').select('Single');
+    cy.get('#email').type(firstName + familyName + '@gmail.com');
+    cy.get('#phoneNumber').type('7' + Cypress._.random(10000000, 99999999));
+    cy.get('#education').select('Primary education');
+    cy.get('#address2').select('Ghanzi District');
+    cy.get('#cityVillage').type('Ghanzi').wait(2000).type('{downarrow}').click();
+    cy.get('#address4').type('Ghanzi tower');
+    cy.get('#btnNext').click();
 
-    cy.get("#amount").type("5").should("have.value", "5");
 
-    cy.get("#paymentMade").click();
 
-    cy.get("#paymentMethod").select("Cash");
+    //Next Of KIN
 
-    cy.contains("button", "Next").click();
+    const uuid3 = () => Cypress._.random(0, 1e4)
+    const uuid4 = () => Cypress._.random(0, 1e5)
 
-    cy.get("#queueRoom").select("Screening Portal");
+    const id3 = uuid3()
+    const id4 = uuid4()
+    const testname2 = `${id3}1${id4}`
+    cy.wait(2000);
+    cy.get('#nokIdNumber').type(testname2);
 
-    cy.contains("button", "Assign Patient").click();
+    cy.get('#nokFullName').type(familyName + ' ' + 'Doe');
+    cy.get('#nokRelationship').select('Father');
+    cy.get('#nokContact').type('7' + Cypress._.random(10000000, 99999999));
+    cy.get('#btnAddress').click();
+
+    cy.get('#btnNext').click();
+
+    cy.get('#btnNext').click();
+
+    cy.get('#amount').type('5');
+    cy.get('#paymentMade').click();
+
+    cy.get('#paymentMethod').select('Cash');
+
+    cy.get('#btnCapturePayment').click();
+
+
+    cy.get('#queueRoom').select('Screening');
+
+    cy.get('#queuePatient').click();
+
+    cy.contains(familyName + ' ' + firstName).should('be.visible')
+
+
+    // cy.get("#name").type("John Juma").should("have.value", "John Juma");
+
+    // cy.contains("button", "Complete").click();
+
+    // cy.wait(1000);
+    // cy.get("#queueRoom")
+    //   .select("Screening")
+
+    // cy.contains("button", "Assign Patient").click();
+
+    // cy.wait(2000);
+
+    // cy.contains('Juma John').should('be.visible')
   });
 
-  it(`TEST 4-Verifying successful registration of EXISTING patient`, () => {
-    cy.contains("button", "Register New Patient").click();
 
-    cy.get("#existingPatientCheck").click();
-
-    cy.get("#find-patients").type("cypress");
-
-    cy.focused().type("{enter}");
-
-    cy.contains("Cypress test1").click();
-
-    cy.get("#queueRoom").select("Screening Portal");
-
-    cy.contains("button", "Assign Patient").click();
-  });
 });

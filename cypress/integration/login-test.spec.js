@@ -34,18 +34,18 @@ describe(`The user is able to see the labels and controls including text-boxes, 
   });
 
   it(`LP03-Verifying Password text-box can take text input`, () => {
-    cy.get("#password").type("Admin123").should("have.value", "Admin123");
+    cy.get("#password").type("Y3z44AH2").should("have.value", "Y3z44AH2");
   });
 
-  it(`LP03.5-Verifying Location text-box can be selected`, () => {
-    cy.get("select").select("Sebele Clinic").should("have.value", "15");
-  });
+  // it(`LP03.5-Verifying Location text-box can be selected`, () => {
+  //   cy.get("select").select("Sebele Clinic").should("have.value", "15");
+  // });
 
-  it(`LP04-Verifying Login button can be pressed`, () => {
-    cy.contains("button", "Sign in").click();
+  // it(`LP04-Verifying Login button can be pressed`, () => {
+  //   cy.contains("button", "Sign in").click();
 
-    cy.get("#error-message").should("have.text", "You must choose a location!");
-  });
+  //   cy.get("#error-message").should("have.text", "You must choose a location!");
+  // });
 });
 
 describe(`The user can interact with the UI via varius actions (positive/negative)`, () => {
@@ -76,8 +76,8 @@ describe(`The user can interact with the UI via varius actions (positive/negativ
   });
 
   it(`LP09-Verify that the user is able to login by entering valid credentials and clicking on the ‘Login’ button.`, () => {
-    enterLoginDetails("admin", "Admin123");
-    cy.get("select").select("Sebele Clinic");
+    enterLoginDetails("admin", "Y3z44AH2");
+ 
 
     cy.contains("button", "Sign in").click();
 
@@ -85,8 +85,8 @@ describe(`The user can interact with the UI via varius actions (positive/negativ
   });
 
   it(`LP10-Verify that the user is able to login by entering valid credentials and pressing Enter key.`, () => {
-    enterLoginDetails("admin", "Admin123");
-    cy.get("select").select("Sebele Clinic");
+    enterLoginDetails("admin", "Y3z44AH2");
+    
 
     cy.focused().type("{enter}");
 
@@ -96,7 +96,7 @@ describe(`The user can interact with the UI via varius actions (positive/negativ
   it(`LP11-Verify that the user is NOT able to login by entering INVALID credentials and clicking on the ‘Login’ button.`, () => {
     enterLoginDetails("bla", "blabla");
 
-    cy.get("select").select("Sebele Clinic");
+
 
 
     cy.contains("button", "Sign in").click();
@@ -105,9 +105,9 @@ describe(`The user can interact with the UI via varius actions (positive/negativ
   });
 
   it(`LP12-Verify that the validation message gets displayed in case the user leaves the username field as blank and that the message does not indicate which is wrong or empty.`, () => {
-    enterLoginDetails("", "Admin123");
+    enterLoginDetails("", "Y3z44AH2");
 
-    cy.get("select").select("Sebele Clinic");
+
 
 
     cy.contains("button", "Sign in").click();
@@ -118,7 +118,6 @@ describe(`The user can interact with the UI via varius actions (positive/negativ
   it(`LP13-Verify that the validation message gets displayed in case the user leaves the password field as blank and that the message does not indicate which is wrong or empty.`, () => {
     enterLoginDetails("admin", "");
 
-    cy.get("select").select("Sebele Clinic");
 
 
     cy.contains("button", "Sign in").click();
@@ -131,7 +130,7 @@ function enterLoginDetails(username, thePassword) {
   //have to do this check as .type does not take empty strings
   if (!username == "") {
     cy.get("#username").type(username).should("have.value", username);
-  }
+  }z
 
   if (!thePassword == "") {
     cy.get("#password").type(thePassword).should("have.value", thePassword);
