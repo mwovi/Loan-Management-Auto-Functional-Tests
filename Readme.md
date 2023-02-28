@@ -50,40 +50,15 @@ cy.type IntelliSense
 Custom commands
 This project also adds several custom commands in cypress/support/commands.js. They are useful to create one or more default todos from the tests.
 
+```
+
 it('should append new items to the bottom of the list', function () {
   cy.createDefaultTodos().as('todos')
   // more test commands
 })
-To let TypeScript compiler know that we have added a custom command and have IntelliSense working, I have described the type signature of the custom command in file cypress/support/index.d.ts. Here is how this file looks; the type signatures should match the arguments custom commands expect.
 
-/// <reference types="cypress" />
+```
 
-declare namespace Cypress {
-  interface Chainable<Subject> {
-    /**
-     * Create several Todo items via UI
-     * @example
-     * cy.createDefaultTodos()
-     */
-    createDefaultTodos(): Chainable<any>
-    /**
-     * Creates one Todo using UI
-     * @example
-     * cy.createTodo('new item')
-     */
-    createTodo(title: string): Chainable<any>
-  }
-}
-To include the new ".d.ts" file into IntelliSense, I could update tsconfig.json or I could add another special comment to the JavaScript spec files - /// <reference types="...>.
-
-// type definitions for Cypress object "cy"
-/// <reference types="cypress" />
-
-// type definitions for custom commands like "createDefaultTodos"
-// will resolve to "cypress/support/index.d.ts"
-/// <reference types="../support" />
-Related: IntelliSense for custom Chai assertions added to Cypress
-
-Support
-If you find errors in the type documentation, please open an issue
+## Support
+If you find errors in the documentation, please open an issue.
 
