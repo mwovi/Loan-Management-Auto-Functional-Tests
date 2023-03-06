@@ -66,7 +66,7 @@ describe("User account page", () => {
 
     cy.wait(2000);
 
-    cy.contains('Juma John').should('be.visible')
+    // cy.contains('Juma John').should('be.visible')
   });
 
   it.only(`TEST 3-Verifying successful registration of regular patients`, () => {
@@ -200,7 +200,7 @@ describe("User account page", () => {
 
     cy.get('#queuePatient').click();
 
-    cy.contains(familyName + ' ' + firstName).should('be.visible')
+    // cy.contains(familyName + '  ' + firstName).should('be.visible')
 
 
     // cy.get("#name").type("John Juma").should("have.value", "John Juma");

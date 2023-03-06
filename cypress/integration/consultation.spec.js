@@ -1,6 +1,8 @@
 /// <reference types="cypress" />
 /// <reference types="@applitools/eyes-cypress" />
 
+import {firstName, familyName} from './registration.spec.js';
+
 describe("User account page", () => {
     beforeEach(() => {
         cy.locations("admin", "Y3z44AH2");
@@ -25,7 +27,7 @@ describe("User account page", () => {
         cy.url().should("contain", "http://botswanaemrdemo.intellisoftkenya.com:9901/openmrs/botswanaemr/consultation/doctorsPatientPoolDashboard.page?appId=botswanaemr.auxilliaryNurseDashboard");
 
 
-        cy.contains('td', 'Juma John')  // gives you the cell 
+        cy.contains('td', familyName+ ' ' + firstName)  // gives you the cell 
             .siblings()                            // gives you all the other cells in the row
             .contains('a', 'Resume treating')               // finds the delete button
             .click()
