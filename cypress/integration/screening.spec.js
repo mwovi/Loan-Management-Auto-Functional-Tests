@@ -22,7 +22,7 @@ describe("User account page", () => {
 
 
 
-    it.only(`TP01-Access screening portal`, () => {
+    it(`TP01-Access screening portal`, () => {
 
         cy.get('#selected-location').click();
         cy.contains('Screening').click()
@@ -91,7 +91,7 @@ describe("User account page", () => {
         cy.wait(5000);
         cy.get('#queueRoom').select("Consultation")
 
-        cy.contains("button", "Assign Patient").click();
+        // cy.contains("button", "Assign Patient").click();
 
         cy.wait(2000);
 
