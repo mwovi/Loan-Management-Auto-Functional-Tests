@@ -1,6 +1,9 @@
 /// <reference types="cypress" />
 /// <reference types="@applitools/eyes-cypress" />
 
+import {firstName, familyName} from './registration.spec.js';
+
+
 describe("User account page", () => {
     beforeEach(() => {
         cy.locations("admin", "Y3z44AH2");
@@ -19,13 +22,13 @@ describe("User account page", () => {
 
 
 
-    it(`TP01-Access screening portal`, () => {
+    it.only(`TP01-Access screening portal`, () => {
 
         cy.get('#selected-location').click();
         cy.contains('Screening').click()
         cy.url().should("contain", "http://botswanaemrdemo.intellisoftkenya.com:9901/openmrs/botswanaemr/registrationScreeningPool.page");
 
-        cy.contains('td', 'Juma John')  // gives you the cell 
+        cy.contains('td', familyName + ' ' + firstName)  // gives you the cell 
             .siblings()                            // gives you all the other cells in the row
             .contains('a', 'Screen')               // finds the delete button
             .click()
@@ -75,7 +78,7 @@ describe("User account page", () => {
 
         cy.get('#nextBtn').click();
 
-        
+
         cy.get('#w288').type("Headache");
         cy.wait(4000);
         cy.get('#w288').type('{downarrow}').click();
@@ -87,13 +90,13 @@ describe("User account page", () => {
 
         cy.wait(5000);
         cy.get('#queueRoom').select("Consultation")
-    
+
         cy.contains("button", "Assign Patient").click();
-    
+
         cy.wait(2000);
 
-        cy.get('#confirmAssignment').click();
-        
+        cy.get('#confirmAssignment').click({force: true});
+
 
     });
 
