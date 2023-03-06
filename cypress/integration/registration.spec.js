@@ -1,8 +1,10 @@
 /// <reference types="cypress" />
 /// <reference types="@applitools/eyes-cypress" />
 
-import { faker } from '@faker-js/faker';
+
 var moment = require('moment');
+
+import { faker } from '@faker-js/faker';
 
 const firstName = faker.name.firstName();
 const familyName = faker.name.lastName();
@@ -135,7 +137,11 @@ describe("User account page", () => {
 
     //   let date2 = moment(date1).format('YYYY-MM-DD');
 
-    let date2 = dateFormat(getRandomDate(), 'yyyy-MM-dd');
+    // let date2 = dateFormat(getRandomDate(), 'yyyy-MM-dd');
+    let date2 = "1990-01-01"
+
+    // console.log(date2);
+    
     cy.wait(2000);
     cy.get('#dateOfBirth').type(date2);
 
@@ -214,3 +220,5 @@ describe("User account page", () => {
 
 
 });
+
+export {firstName, familyName};
