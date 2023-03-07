@@ -43,8 +43,20 @@ The npm cypress start script will spawn a new cypress tab which hosts the test s
 
 
 ## 3. Run the tests
+The tests are located in the cypress/integration folder. The tests are grouped into folders based on the module they are testing. The tests are also grouped into files based on the functionality they are testing. The tests are also commented to explain what they are testing.
+
+To run each test, access the cypress window that pops up when the ``` npx cypress open ``` command is typed and ran in the terminal.
+Click on the test file and then click on the test you want to run. The test will then run on your browser.
+
+```diff
+
+@@ NB: For each test, the site will be accessed and the user will be logged in. This is done to ensure that the tests are independent of each other. 
+This means that the tests can be run in any order and they will still pass.@@
+
+```
+
 ### 3.1 Login-test.spec.js
-This test will login to the application and verify that the user is logged in.
+This test will login to the application and verify that the user is logged in..
 
 
 ### 3.2 location.spec.js
