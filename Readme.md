@@ -42,6 +42,32 @@ The npm cypress start script will spawn a new cypress tab which hosts the test s
 ```
 
 
+## 3. Run the tests
+### 3.1 Login-test.spec.js
+This test will login to the application and verify that the user is logged in.
+
+
+### 3.2 location.spec.js
+This test will select a facility and service location then verify that the site has accessed the correct facility and service location.
+
+
+### 3.3 registration.spec.js
+This test will register a patient and verify that the patient has been registered.
+
+#### 3.3.1 Emergency Patient Registration
+This test will register an emergency patient and verify that the patient has been registered and assigned to the correct service location (Screening).
+
+#### 3.3.2 Regular Patient Registration
+This test will register a regular patient and verify that the patient has been registered and assigned to the correct service location (Screening).
+
+### 3.4 screening.spec.js
+This test will access the screening module and verify that the module has been accessed, then proceed with the screening process for the patient registered in the last test and verify that the patient has been correctly screened, then assigned the patient to the correct service location (Consultation).
+
+### 3.5 consultation.spec.js
+This test will access the consultation module and verify that the module has been accessed, then proceed with the consultation process for the patient screened in the last test, by beginning a consultation and then verify that the patient has been correctly assesed and diagnosed.The patient should then be assigned the patient to the correct service location, in this case, pharmacy.
+
+### 3.6 pharmacy.spec.js
+
 Cypress IntelliSense
 If you use modern IDE that supports TypeScript (like VSCode), you can benefit from Cypress type declarations included with the cypress NPM module. Just add @ts-check to the spec file and configure "dummy" tsconfig.json file and see IntelliSense over cy.<something> commands.
 
