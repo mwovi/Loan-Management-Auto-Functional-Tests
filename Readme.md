@@ -56,7 +56,7 @@ This means that the tests can be run in any order and they will still pass.@@
 ```
 
 ### 3.1 Login-test.spec.js
-This test will login to the application and verify that the user is logged in..
+This test will login to the application and verify that the user is logged in.
 
 
 ### 3.2 location.spec.js
