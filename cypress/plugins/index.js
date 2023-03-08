@@ -1,4 +1,17 @@
 /// <reference types="cypress" />
+const { lighthouse, prepareAudit } = require('cypress-audit');
+
+
+module.exports = (on, config) => {
+  on('before:browser:launch', (browser = {}, launchOptions) => {
+    prepareAudit(launchOptions);
+  });
+
+  on('task', {
+    lighthouse: lighthouse(),
+  });
+};
+
 // ***********************************************************
 // This example plugins/index.js can be used to load plugins
 //
