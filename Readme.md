@@ -48,15 +48,16 @@ The tests are located in the cypress/integration folder. The tests are grouped i
 To run each test, access the cypress window that pops up when the ``` npx cypress open ``` command is typed and ran in the terminal.
 Click on the test file and then click on the test you want to run. The test will then run on your browser.
 
-```diff
+```
 
-@@ NB: For each test, the site will be accessed and the user will be logged in. This is done to ensure that the tests are independent of each other. 
-This means that the tests can be run in any order and they will still pass.@@
+NB: For each test, the site will be accessed and the user will be logged in. 
+This is done to ensure that the tests are independent of each other. 
+This means that the tests can be run in any order and they will still pass.
 
 ```
 
 ### 3.1 Login-test.spec.js
-This test will login to the application and verify that the user is logged in..
+This test will login to the application and verify that the user is logged in.
 
 
 ### 3.2 location.spec.js
@@ -79,6 +80,13 @@ This test will access the screening module and verify that the module has been a
 This test will access the consultation module and verify that the module has been accessed, then proceed with the consultation process for the patient screened in the last test, by beginning a consultation and then verify that the patient has been correctly assesed and diagnosed.The patient should then be assigned the patient to the correct service location, in this case, pharmacy.
 
 ### 3.6 pharmacy.spec.js
+
+### 3.7 stock-management.spec.js
+
+### 3.8 System-Administration.spec.js
+
+
+
 
 Cypress IntelliSense
 If you use modern IDE that supports TypeScript (like VSCode), you can benefit from Cypress type declarations included with the cypress NPM module. Just add @ts-check to the spec file and configure "dummy" tsconfig.json file and see IntelliSense over cy.<something> commands.

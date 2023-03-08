@@ -10,7 +10,7 @@ const firstName = faker.name.firstName();
 const familyName = faker.name.lastName();
 // const mobileNumber = faker.phone.phoneNumber('966#######');
 
-describe("User account page", () => {
+describe("Registration page", () => {
   beforeEach(() => {
     cy.locations("admin", "Y3z44AH2");
 
@@ -27,13 +27,13 @@ describe("User account page", () => {
 
   //********tests-cases*********
 
-  it("TP00-Should actually be accessible", () => {
+  it("TEST 1-Should actually be accessible", () => {
     cy.visit(
       "http://botswanaemrdemo.intellisoftkenya.com:9901/openmrs/botswanaemr/registrationAdminDashboard.page?appId=botswanaemr.registrationAdminDashboard"
     );
   });
 
-  it(`TP01-Verifying visibility of the page objects`, () => {
+  it.skip(`TEST 2-Verifying visibility of the page objects`, () => {
     //applitools eyes test
     cy.eyesCheckWindow({
       tag: "TP01-Verifying visibility of the elements on the page",
@@ -42,7 +42,7 @@ describe("User account page", () => {
     });
   });
 
-  it(`TEST 2-Verifying successful registration of emergency patients`, () => {
+  it.skip(`TEST 3-Verifying successful registration of emergency patients`, () => {
     cy.contains("button", "Register New Patient").click();
 
     cy.get('#find-patients').type("Jane Doe{enter}").should("have.value", "Jane Doe");
@@ -69,7 +69,7 @@ describe("User account page", () => {
     // cy.contains('Juma John').should('be.visible')
   });
 
-  it.only(`TEST 3-Verifying successful registration of regular patients`, () => {
+  it(`TEST 4-Verifying successful registration of regular patients`, () => {
     cy.contains("button", "Register New Patient").click();
 
     cy.get('#find-patients').type("Jane Doe{enter}").should("have.value", "Jane Doe");
@@ -179,6 +179,8 @@ describe("User account page", () => {
     cy.wait(2000);
     cy.get('#nokIdNumber').type(testname2);
 
+    cy.wait(10000)
+
     cy.get('#nokFullName').type(familyName + ' ' + 'Doe');
     cy.get('#nokRelationship').select('Father');
     cy.get('#nokContact').type('7' + Cypress._.random(10000000, 99999999));
@@ -187,6 +189,8 @@ describe("User account page", () => {
     cy.get('#btnNext').click();
 
     cy.get('#btnNext').click();
+
+    cy.wait(4000);
 
     cy.get('#amount').type('5');
     cy.get('#paymentMade').click();

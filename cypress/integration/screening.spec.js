@@ -1,10 +1,13 @@
 /// <reference types="cypress" />
 /// <reference types="@applitools/eyes-cypress" />
 
-import {firstName, familyName} from './registration.spec.js';
+import { firstName, familyName } from './registration.spec.js';
+
+const firstname = firstName;
+const familyname = familyName;
 
 
-describe("User account page", () => {
+describe("Screening page", () => {
     beforeEach(() => {
         cy.locations("admin", "Y3z44AH2");
 
@@ -22,13 +25,18 @@ describe("User account page", () => {
 
 
 
-    it(`TP01-Access screening portal`, () => {
+    it(`TEST 1-Access screening module`, () => {
 
         cy.get('#selected-location').click();
-        cy.contains('Screening').click()
-        cy.url().should("contain", "http://botswanaemrdemo.intellisoftkenya.com:9901/openmrs/botswanaemr/registrationScreeningPool.page");
+        cy.get('[locationid="9"]').click()
+        cy.url().should("contain", "http://botswanaemrdemo.intellisoftkenya.com:9901/openmrs/botswanaemr/consultation/auxilliaryNurseDashboard.page?appId=botswanaemr.auxilliaryNurseDashboard");
 
-        cy.contains('td', familyName + ' ' + firstName)  // gives you the cell 
+
+        cy.get('[data-dt-idx="3"]').click();
+
+        cy.wait(2000);
+
+        cy.contains('td', familyname + ' ' + firstname)  // gives you the cell 
             .siblings()                            // gives you all the other cells in the row
             .contains('a', 'Screen')               // finds the delete button
             .click()
@@ -42,7 +50,7 @@ describe("User account page", () => {
 
         cy.get('#pills-screening-process-tab').click();
         cy.get('#w6').type('38');
-        cy.get('#w8').type('120');
+        cy.get('#w8').type('120', {force: true});
         cy.get('#w10').type('80');
         cy.wait(1000);
         cy.get('#w12').type('75');
@@ -95,7 +103,7 @@ describe("User account page", () => {
 
         cy.wait(2000);
 
-        cy.get('#confirmAssignment').click({force: true});
+        cy.get('#confirmAssignment').click({ force: true });
 
 
     });
@@ -104,3 +112,5 @@ describe("User account page", () => {
 
 
 });
+
+export { firstname, familyname };
