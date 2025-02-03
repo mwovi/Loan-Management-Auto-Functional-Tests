@@ -74,7 +74,6 @@ npx cypress run --spec "cypress/e2e/borrowers.cy.js"
 | Login Tests     | ❌ Failed |
 | Borrowers Tests | ✅ Passed |
 | Dashboard Tests | ✅ Passed |
-| Email Tests     | ✅ Passed |
 | Loans Tests     | ✅ Passed |
 | Payments Tests  | ✅ Passed |
 
