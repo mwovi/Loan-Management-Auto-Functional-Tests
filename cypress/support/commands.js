@@ -26,33 +26,33 @@ import "cypress-audit/commands";
 // -- This will overwrite an existing command --
 // Cypress.Commands.overwrite('visit', (originalFn, url, options) => { ... })
 
-Cypress.Commands.add("login", (username, password) => {
-  cy.visit("http://botswanaemrdemo.intellisoftkenya.com:9901/openmrs");
-  cy.get("#username").type(username);
-  cy.get("#password").type(password);
-  // cy.get("select").select("Sebele Clinic");
+// Cypress.Commands.add("login", (username, password) => {
+//   cy.visit("http://botswanaemrdemo.intellisoftkenya.com/openmrs/login.htm");
+//   cy.get("#username").type(username);
+//   cy.get("#password").type(password);
+//   // cy.get("select").select("Sebele Clinic");
 
-  cy.contains("button", "Sign in").click();
-  cy.url().should("contain", "/botswanaemr/selectServicePoint.page");
-});
+//   cy.contains("button", "Sign in").click();
+//   cy.url().should("contain", "/botswanaemr/selectServicePoint.page");
+// });
 
-Cypress.Commands.add("locations", (username, password) => {
-  cy.visit("http://botswanaemrdemo.intellisoftkenya.com:9901/openmrs");
-  cy.get("#username").type(username);
-  cy.wait(1000);
-  cy.get("#password").type(password);
+// Cypress.Commands.add("locations", (username, password) => {
+//   cy.visit("http://botswanaemrdemo.intellisoftkenya.com/openmrs/login.htm");
+//   cy.get("#username").type(username);
+//   cy.wait(1000);
+//   cy.get("#password").type(password);
   
 
-  cy.contains("button", "Sign in").click();
-  cy.url().should("contain", "/botswanaemr/selectServicePoint.page");
+//   cy.contains("button", "Sign in").click();
+//   cy.url().should("contain", "/botswanaemr/selectServicePoint.page");
 
-  cy.get("#loggedInLocationId").select("Sebele Clinic");
-  cy.get("#sessionLocationId").select("Registration Desk");
+//   cy.get("#loggedInLocationId").select("Sebele Clinic");
+//   cy.get("#sessionLocationId").select("Registration Desk");
 
-  cy.contains("button", "Check in").click();
+//   cy.contains("button", "Check in").click();
 
-  cy.url().should(
-    "contain",
-    "http://botswanaemrdemo.intellisoftkenya.com:9901/openmrs/botswanaemr/registrationAdminDashboard.page?appId=botswanaemr.registrationAdminDashboard"
-  );
-});
+  // cy.url().should(
+  //   "contain",
+  //   "http://botswanaemrdemo.intellisoftkenya.com:9901/openmrs/botswanaemr/registrationAdminDashboard.page?appId=botswanaemr.registrationAdminDashboard"
+  // );
+// });

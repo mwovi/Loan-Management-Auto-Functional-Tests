@@ -1,0 +1,105 @@
+{
+  "stats": {
+    "suites": 1,
+    "tests": 1,
+    "passes": 1,
+    "pending": 0,
+    "failures": 0,
+    "start": "2025-02-03T12:38:29.828Z",
+    "end": "2025-02-03T12:38:41.225Z",
+    "duration": 11397,
+    "testsRegistered": 1,
+    "passPercent": 100,
+    "pendingPercent": 0,
+    "other": 0,
+    "hasOther": false,
+    "skipped": 0,
+    "hasSkipped": false
+  },
+  "results": [
+    {
+      "uuid": "b8191699-20d9-4769-a40b-4a1040e74b0a",
+      "title": "",
+      "fullFile": "cypress/e2e/payments.cy.js",
+      "file": "cypress/e2e/payments.cy.js",
+      "beforeHooks": [],
+      "afterHooks": [],
+      "tests": [],
+      "suites": [
+        {
+          "uuid": "509f9e68-6fc5-4b36-bdfe-74e2cd36b518",
+          "title": "Loans",
+          "fullFile": "",
+          "file": "",
+          "beforeHooks": [],
+          "afterHooks": [],
+          "tests": [
+            {
+              "title": "Should be able to add a Payment",
+              "fullTitle": "Loans Should be able to add a Payment",
+              "timedOut": null,
+              "duration": 11367,
+              "state": "passed",
+              "speed": "slow",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "cy.wait(2000); // Allow the page to load\ncy.get('.bg-red-500 > a').click();\n// Scroll to and click the Edit button for a disbursed loan\ncy.get(':nth-child(1) > :nth-child(6) > :nth-child(2) > a > [data-testid=\"VisibilityOutlinedIcon\"]').scrollIntoView().should(\"be.visible\").click();\ncy.wait(2000); // Allow the page to load\n// Click the payment button\ncy.get('tr > .flex > .px-4 > a').should(\"be.visible\").click();\ncy.wait(2000); // Allow the payment form to load\n// Generate a random future date\nconst collectionDate = _faker.faker.date.future(1);\nconst formattedDate = collectionDate.toISOString().split('T')[0]; // Format: YYYY-MM-DD\n// Fill in payment details\ncy.get('.grid > :nth-child(2) > .block').type(formattedDate);\ncy.get(':nth-child(3) > .block').type(1000);\ncy.get(':nth-child(4) > .block').type(\"Cypress test\");\ncy.get(':nth-child(7) > .w-auto').click();",
+              "err": {},
+              "uuid": "790698fb-3076-4f96-99f7-f794126e355c",
+              "parentUUID": "509f9e68-6fc5-4b36-bdfe-74e2cd36b518",
+              "isHook": false,
+              "skipped": false
+            }
+          ],
+          "suites": [],
+          "passes": [
+            "790698fb-3076-4f96-99f7-f794126e355c"
+          ],
+          "failures": [],
+          "pending": [],
+          "skipped": [],
+          "duration": 11367,
+          "root": false,
+          "rootEmpty": false,
+          "_timeout": 2000
+        }
+      ],
+      "passes": [],
+      "failures": [],
+      "pending": [],
+      "skipped": [],
+      "duration": 0,
+      "root": true,
+      "rootEmpty": true,
+      "_timeout": 2000
+    }
+  ],
+  "meta": {
+    "mocha": {
+      "version": "7.0.1"
+    },
+    "mochawesome": {
+      "options": {
+        "quiet": false,
+        "reportFilename": "mochawesome",
+        "saveHtml": false,
+        "saveJson": true,
+        "consoleReporter": "spec",
+        "useInlineDiffs": false,
+        "code": true
+      },
+      "version": "7.1.3"
+    },
+    "marge": {
+      "options": {
+        "reportDir": "cypress/reports",
+        "overwrite": false,
+        "html": false,
+        "json": true
+      },
+      "version": "6.2.0"
+    }
+  }
+}

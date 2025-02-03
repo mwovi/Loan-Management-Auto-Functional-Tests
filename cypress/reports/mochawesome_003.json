@@ -1,0 +1,105 @@
+{
+  "stats": {
+    "suites": 1,
+    "tests": 1,
+    "passes": 1,
+    "pending": 0,
+    "failures": 0,
+    "start": "2025-02-03T12:36:04.805Z",
+    "end": "2025-02-03T12:36:11.073Z",
+    "duration": 6268,
+    "testsRegistered": 1,
+    "passPercent": 100,
+    "pendingPercent": 0,
+    "other": 0,
+    "hasOther": false,
+    "skipped": 0,
+    "hasSkipped": false
+  },
+  "results": [
+    {
+      "uuid": "aec6485f-206b-45ae-82ff-791896689f88",
+      "title": "",
+      "fullFile": "cypress/e2e/loans.cy.js",
+      "file": "cypress/e2e/loans.cy.js",
+      "beforeHooks": [],
+      "afterHooks": [],
+      "tests": [],
+      "suites": [
+        {
+          "uuid": "c67df126-e62f-4a5c-8bfe-da8cee6905f1",
+          "title": "Loans",
+          "fullFile": "",
+          "file": "",
+          "beforeHooks": [],
+          "afterHooks": [],
+          "tests": [
+            {
+              "title": "Should be able to add a Loan",
+              "fullTitle": "Loans Should be able to add a Loan",
+              "timedOut": null,
+              "duration": 6243,
+              "state": "passed",
+              "speed": "medium",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "// Open the loan form\ncy.get('.border-y-2 > .bg-red-500').click();\n// Client ID field: Type a client ID (for simplicity, using a fixed value or a random one)\nconst clientId = _faker.faker.number.int({\n  min: 1,\n  max: 20\n});\ncy.get(':nth-child(1) > .block').type(clientId); // Client ID field\n// Loan type dropdown: Options - Personal Loan, Salary Loan, Business Loan\nconst loanTypes = ['Personal Loan', 'Salary Loan', 'Business Loan'];\nconst selectedLoanType = loanTypes[Math.floor(Math.random() * loanTypes.length)];\ncy.get('#type').select(selectedLoanType); // Use cy.select() for dropdowns\n// Loan status dropdown: Options - Approved, Fully Paid, Disbursed, Pending, Declined\nconst loanStatuses = ['Approved', 'Fully Paid', 'Disbursed', 'Pending', 'Declined'];\nconst selectedStatus = loanStatuses[Math.floor(Math.random() * loanStatuses.length)];\ncy.get('#status').select(selectedStatus); // Use cy.select() for dropdowns\n// Gross loan field: Type a random number for the gross loan amount\nconst grossLoan = _faker.faker.number.int({\n  min: 5000,\n  max: 50000\n});\ncy.get(':nth-child(4) > .block').type(grossLoan); // Gross loan\n// Balance field: Randomly type in a value (less than the gross loan amount)\nconst balance = _faker.faker.number.int({\n  min: 1000,\n  max: grossLoan - 1\n});\ncy.get(':nth-child(5) > .block').type(balance); // Balance field\n// Amortization field: Randomly type in a value (based on gross loan and balance)\nconst amortization = _faker.faker.number.int({\n  min: 1,\n  max: grossLoan - balance\n});\ncy.get(':nth-child(6) > .block').type(amortization); // Amortization field\n// Terms dropdown: Options - 1 Month, 2 Months, 3 Months, 4 Months, 5 Months, 6 Months, 12 Months\nconst loanTerms = ['1 Month', '2 Months', '3 Months', '4 Months', '5 Months', '6 Months', '12 Months'];\nconst selectedTerm = loanTerms[Math.floor(Math.random() * loanTerms.length)];\ncy.get('#terms').select(selectedTerm); // Use cy.select() for dropdowns\n// Date released field: Type in date and time (format: YYYY-MM-DDThh:mm)\nconst releaseDate = _faker.faker.date.past(1); // Random past date\nconst year = releaseDate.getFullYear();\nconst month = (releaseDate.getMonth() + 1).toString().padStart(2, '0'); // Ensure 2 digits\nconst day = releaseDate.getDate().toString().padStart(2, '0'); // Ensure 2 digits\nconst hours = _faker.faker.number.int({\n  min: 0,\n  max: 23\n}).toString().padStart(2, '0'); // 2 digits for hours\nconst minutes = _faker.faker.number.int({\n  min: 0,\n  max: 59\n}).toString().padStart(2, '0'); // 2 digits for minutes\nconst formattedDateReleased = `${year}-${month}-${day}T${hours}:${minutes}`; // Format: YYYY-MM-DDThh:mm\ncy.get(':nth-child(8) > .block').type(formattedDateReleased); // Type the date and time\n// Move to the next field (maturity date)\ncy.get(':nth-child(8) > .block').tab(); // Move to the next field\ncy.get(':nth-child(9) > .block').tab(); // Move to the next field (maturity date)\n// Maturity date field: Type the maturity date (format: YYYY-MM-DD)\nconst maturityDate = _faker.faker.date.future(1); // Random future date\nconst maturityYear = maturityDate.getFullYear();\nconst maturityMonth = (maturityDate.getMonth() + 1).toString().padStart(2, '0'); // Ensure 2 digits\nconst maturityDay = maturityDate.getDate().toString().padStart(2, '0'); // Ensure 2 digits\nconst formattedMaturityDate = `${maturityYear}-${maturityMonth}-${maturityDay}`; // Format: YYYY-MM-DD\ncy.get(':nth-child(9) > .block').type(formattedMaturityDate); // Type the maturity date\ncy.get(':nth-child(9) > .block').tab(); // Move to the next field\n// Submit the form\ncy.get('.w-auto').click(); // Add New Loan button",
+              "err": {},
+              "uuid": "06c5086a-3e7e-4d35-aa07-d705876e5ecc",
+              "parentUUID": "c67df126-e62f-4a5c-8bfe-da8cee6905f1",
+              "isHook": false,
+              "skipped": false
+            }
+          ],
+          "suites": [],
+          "passes": [
+            "06c5086a-3e7e-4d35-aa07-d705876e5ecc"
+          ],
+          "failures": [],
+          "pending": [],
+          "skipped": [],
+          "duration": 6243,
+          "root": false,
+          "rootEmpty": false,
+          "_timeout": 2000
+        }
+      ],
+      "passes": [],
+      "failures": [],
+      "pending": [],
+      "skipped": [],
+      "duration": 0,
+      "root": true,
+      "rootEmpty": true,
+      "_timeout": 2000
+    }
+  ],
+  "meta": {
+    "mocha": {
+      "version": "7.0.1"
+    },
+    "mochawesome": {
+      "options": {
+        "quiet": false,
+        "reportFilename": "mochawesome",
+        "saveHtml": false,
+        "saveJson": true,
+        "consoleReporter": "spec",
+        "useInlineDiffs": false,
+        "code": true
+      },
+      "version": "7.1.3"
+    },
+    "marge": {
+      "options": {
+        "reportDir": "cypress/reports",
+        "overwrite": false,
+        "html": false,
+        "json": true
+      },
+      "version": "6.2.0"
+    }
+  }
+}

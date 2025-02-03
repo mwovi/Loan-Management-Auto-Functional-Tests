@@ -1,0 +1,105 @@
+{
+  "stats": {
+    "suites": 1,
+    "tests": 1,
+    "passes": 1,
+    "pending": 0,
+    "failures": 0,
+    "start": "2025-02-03T12:37:37.578Z",
+    "end": "2025-02-03T12:37:47.533Z",
+    "duration": 9955,
+    "testsRegistered": 1,
+    "passPercent": 100,
+    "pendingPercent": 0,
+    "other": 0,
+    "hasOther": false,
+    "skipped": 0,
+    "hasSkipped": false
+  },
+  "results": [
+    {
+      "uuid": "a5b48313-b96c-4a90-bbc4-d8bb599cac15",
+      "title": "",
+      "fullFile": "cypress/e2e/borrowers.cy.js",
+      "file": "cypress/e2e/borrowers.cy.js",
+      "beforeHooks": [],
+      "afterHooks": [],
+      "tests": [],
+      "suites": [
+        {
+          "uuid": "f4af712c-bbe7-428c-8d96-8f14ec769a56",
+          "title": "Borrowers",
+          "fullFile": "",
+          "file": "",
+          "beforeHooks": [],
+          "afterHooks": [],
+          "tests": [
+            {
+              "title": "Should be able to add a Borrower",
+              "fullTitle": "Borrowers Should be able to add a Borrower",
+              "timedOut": null,
+              "duration": 9904,
+              "state": "passed",
+              "speed": "medium",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "// Generate random data using faker\nfirstName = _faker.faker.name.firstName();\nlastName = _faker.faker.name.lastName();\nconst email = _faker.faker.internet.email(firstName, lastName);\nconst username = _faker.faker.internet.userName(firstName, lastName);\nconst phoneNumber = `07${_faker.faker.number.int({\n  min: 1000000,\n  max: 9999999\n})}`;\nconst address = `${_faker.faker.address.streetAddress()}, ${_faker.faker.address.city()}, Kenya`;\ncy.get('.border > a').should(\"be.visible\").click(); // Update selector\ncy.get('[name=\"firstname\"]').type(firstName);\ncy.get('[name=\"lastname\"]').type(lastName);\ncy.get('[type=\"number\"]').type(phoneNumber);\ncy.get('[name=\"address\"]').type(address);\ncy.get('[type=\"email\"]').type(email);\ncy.get('[name=\"username\"]').type(username);\ncy.get('[type=\"submit\"]').click();\ncy.wait(3000);\n// Verify borrower was added\ncy.contains(`${firstName} ${lastName}`).scrollIntoView().should(\"be.visible\");",
+              "err": {},
+              "uuid": "67b55869-17a0-4119-a023-b2c74194e0e9",
+              "parentUUID": "f4af712c-bbe7-428c-8d96-8f14ec769a56",
+              "isHook": false,
+              "skipped": false
+            }
+          ],
+          "suites": [],
+          "passes": [
+            "67b55869-17a0-4119-a023-b2c74194e0e9"
+          ],
+          "failures": [],
+          "pending": [],
+          "skipped": [],
+          "duration": 9904,
+          "root": false,
+          "rootEmpty": false,
+          "_timeout": 2000
+        }
+      ],
+      "passes": [],
+      "failures": [],
+      "pending": [],
+      "skipped": [],
+      "duration": 0,
+      "root": true,
+      "rootEmpty": true,
+      "_timeout": 2000
+    }
+  ],
+  "meta": {
+    "mocha": {
+      "version": "7.0.1"
+    },
+    "mochawesome": {
+      "options": {
+        "quiet": false,
+        "reportFilename": "mochawesome",
+        "saveHtml": false,
+        "saveJson": true,
+        "consoleReporter": "spec",
+        "useInlineDiffs": false,
+        "code": true
+      },
+      "version": "7.1.3"
+    },
+    "marge": {
+      "options": {
+        "reportDir": "cypress/reports",
+        "overwrite": false,
+        "html": false,
+        "json": true
+      },
+      "version": "6.2.0"
+    }
+  }
+}

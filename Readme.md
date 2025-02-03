@@ -1,110 +1,125 @@
-This repo contains tests written in Cypress.
+# 📌 Loan Management System - Functional Testing
 
-The tests are heavily commented to ease you into the Cypress API.
+This repository contains **functional tests** for the **Loan Management System**, covering **UI Testing** using **Cypress**.  
 
-## Help + Testing
-The steps below will take you all the way through Cypress. It is assumed you have nothing installed except for node + git.
+## 📖 Table of Contents
+- [🚀 Overview](#-overview)  
+- [📂 Project Structure](#-project-structure)  
+- [🛠️ Installation & Setup](#-installation--setup)  
+- [🧪 Running Automated Tests](#-running-automated-tests)  
+- [📊 Test Coverage](#-test-coverage)  
+- [⚙️ Configuration](#-configuration)  
+- [📝 Reporting](#-reporting)  
+- [🎯 Future Improvements](#-future-improvements)  
+- [📞 Support](#-support)  
 
-If you get stuck, here is more help:
+---
 
-[Gitter Channel](https://app.gitter.im/#/room/#cypress-io_cypress:gitter.im)
-[Cypress Docs](https://docs.cypress.io/guides/overview/why-cypress)
-[Cypress CLI Tool Docs](https://github.com/cypress-io/cypress-cli)
-## 1. Install Cypress
-Follow [these](https://docs.cypress.io/guides/getting-started/installing-cypress) instructions to install Cypress. 
-(This specific tests run on cypress version @9.5.0)
-
-Run this command to install the specific version needed for this project.
-
-`npm cypress install@9.5.0`
+## 🚀 Overview
+This project automates the **functional testing** of the Loan Management System, focusing on **UI Testing** using **Cypress**.  It ensures the core functionality of the system works as expected from a user's perspective.
 
 
+---
 
-## 2. Fork this repo
-You'll need to fork the project first.
+## 📂 Project Structure
 
-After forking this project in Github, run these commands:
-
-```
-## clone this repo to a local directory
-git clone https://github.com/IntelliSOFT-Consulting/BotswanaEMRAutomatedTests.git
-
-## cd into the cloned repo
-cd BotswanaEMRAutomatedTests
-
-## install the node_modules
-npm install
-
-## start the local webserver
-npx cypress open 
-The npm cypress start script will spawn a new cypress tab which hosts the test scripts that can then be run on your browser.
-
+```sh
+/loan-management-testing
+├── /cypress              # Cypress UI test automation
+│   ├── /e2e            # End-to-end test files
+│   ├── /fixtures       # Test data (borrowers, loans, etc.)
+│   ├── /support        # Custom Cypress commands
+│   ├── cypress.config.js # Cypress configuration
+├── README.md             # Documentation
 ```
 
+---
 
-## 3. Run the tests
-The tests are located in the cypress/integration folder. The tests are grouped into folders based on the module they are testing. The tests are also grouped into files based on the functionality they are testing. The tests are also commented to explain what they are testing.
+## 🛠️ Installation & Setup
 
-To run each test, access the cypress window that pops up when the ``` npx cypress open ``` command is typed and ran in the terminal.
-Click on the test file and then click on the test you want to run. The test will then run on your browser.
-
+### 1️⃣ Clone the Repository
+```sh
+git clone https://github.com/yourusername/loan-management-testing.git
+cd loan-management-testing
 ```
 
-NB: For each test, the site will be accessed and the user will be logged in. 
-This is done to ensure that the tests are independent of each other. 
-This means that the tests can be run in any order and they will still pass.
-
+### 2️⃣ Install Dependencies
+- Cypress (for UI testing)
+```sh
+npm install cypress --save-dev
 ```
 
-### 3.1 Login-test.spec.js
-This test will login to the application and verify that the user is logged in.
+### 🧪 Running Automated Tests
+- ✅ Running UI Tests (Cypress)
+
+1. Open Cypress GUI:
+
+```sh
+npx cypress open
+```
+- Select and run specific UI test cases.
 
 
-### 3.2 location.spec.js
-This test will select a facility and service location then verify that the site has accessed the correct facility and service location.
+2. Run Cypress tests in headless mode:
+
+```sh
+npx cypress run --spec "cypress/e2e/borrowers.cy.js"
+```
+- Replace "cypress/e2e/borrowers.cy.js" with the path to the specific test file you want to execute. You can also use wildcards to run multiple tests (e.g., cypress/e2e/*.cy.js).
+
+### 📊 Test Coverage
+
+| Test Suite      | Status |
+|-----------------|--------|
+| Login Tests     | ❌ Failed |
+| Borrowers Tests | ✅ Passed |
+| Dashboard Tests | ✅ Passed |
+| Email Tests     | ✅ Passed |
+| Loans Tests     | ✅ Passed |
+| Payments Tests  | ✅ Passed |
 
 
-### 3.3 registration.spec.js
-This test will register a patient and verify that the patient has been registered.
+### ⚙️ Configuration
+🔹 Update cypress.config.js to customize settings like the base URL, support file, and retry attempts.
 
-#### 3.3.1 Emergency Patient Registration
-This test will register an emergency patient and verify that the patient has been registered and assigned to the correct service location (Screening).
-
-#### 3.3.2 Regular Patient Registration
-This test will register a regular patient and verify that the patient has been registered and assigned to the correct service location (Screening).
-
-### 3.4 screening.spec.js
-This test will access the screening module and verify that the module has been accessed, then proceed with the screening process for the patient registered in the last test and verify that the patient has been correctly screened, then assigned the patient to the correct service location (Consultation).
-
-### 3.5 consultation.spec.js
-This test will access the consultation module and verify that the module has been accessed, then proceed with the consultation process for the patient screened in the last test, by beginning a consultation and then verify that the patient has been correctly assesed and diagnosed.The patient should then be assigned the patient to the correct service location, in this case, pharmacy.
-
-### 3.6 pharmacy.spec.js
-
-### 3.7 stock-management.spec.js
-
-### 3.8 System-Administration.spec.js
-
-
-
-
-Cypress IntelliSense
-If you use modern IDE that supports TypeScript (like VSCode), you can benefit from Cypress type declarations included with the cypress NPM module. Just add @ts-check to the spec file and configure "dummy" tsconfig.json file and see IntelliSense over cy.<something> commands.
-
-cy.type IntelliSense
-
-Custom commands
-This project also adds several custom commands in cypress/support/commands.js. They are useful to create one or more default todos from the tests.
-
+```sh
+export default defineConfig({
+  e2e: {
+    baseUrl: "http://localhost:8000", // URL of the Loan Management System
+    supportFile: "cypress/support/e2e.js", // Path to the support file
+    retries: 2 // Number of retry attempts for failed tests
+  },
+});
 ```
 
-it('should append new items to the bottom of the list', function () {
-  cy.createDefaultTodos().as('todos')
-  // more test commands
-})
+### 📝 Reporting
+### 📌 Cypress Reports
 
+Generate Cypress HTML report (using Mochawesome reporter):
+
+```sh
+
+npx cypress run --reporter mochawesome
 ```
 
-## Support
-If you find errors in the documentation, please open an issue.
+Report is saved in:
 
+```sh
+cypress/reports/mochawesome-report/
+```
+
+### 🎯 Future Improvements
+🔹 Fix Login Test Failure
+
+🔹 Performance testing using Gatling
+
+🔹 Security testing for authentication endpoints
+
+🔹 Integration with CI/CD pipeline
+
+### 📞 Support
+If you encounter any issues, feel free to open an issue or contact:
+
+📧 Email: petermwovi73@gmail.com
+
+🔗 GitHub: Mwovi
