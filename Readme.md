@@ -39,8 +39,8 @@ This project automates the **functional testing** of the Loan Management System,
 
 ### 1️⃣ Clone the Repository
 ```sh
-git clone https://github.com/yourusername/loan-management-testing.git
-cd loan-management-testing
+git clone https://github.com/mwovi/Loan-Management-Auto-Functional-Tests.git
+cd Loan-Management-Auto-Functional-Tests
 ```
 
 ### 2️⃣ Install Dependencies
